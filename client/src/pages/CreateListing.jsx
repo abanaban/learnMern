@@ -46,15 +46,16 @@ const CreateListing = () => {
             ...formData,
             imageUrls: formData.imageUrls.concat(urls),
           });
-          setImageUploadError(false);
           setUploading(false);
+          setImageUploadError(false);
         })
         .catch((err) => {
+          setUploading(false)
           setImageUploadError("Image Upload faild (2 Mb max per image) ");
         });
     } else {
-      setImageUploadError("You can only upload 6 images per listing");
       setUploading(false);
+      setImageUploadError("You can only upload 6 images per listing");
     }
   };
   const storeImage = async (file) => {
@@ -82,7 +83,6 @@ const CreateListing = () => {
       );
     });
   };
-  console.log(formData);
   const handleRemoveImage = (index) => {
     setFormData({
       ...formData,
@@ -137,7 +137,6 @@ const CreateListing = () => {
         }),
       });
       const data = await res.json();
-      console.log(data);
       setLoading(false);
       if (data.success === true) {
         setError(data.message);
