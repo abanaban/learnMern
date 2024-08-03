@@ -17,6 +17,7 @@ const Listing = () => {
     const [copied, setCopied] = useState(false)
     const {currentUser} = useSelector((state)=> (state.user))
     const [contact, setContact] = useState(false)
+    
     useEffect(()=>{
         const fetchListing = async ()=> {
             try {
@@ -39,6 +40,7 @@ const Listing = () => {
         }
         fetchListing()
     },[params.listingId])
+    
   return (
     <main>
       {loading && <p className='text-center my-7 text-2xl'>Loading...</p>}
@@ -96,10 +98,7 @@ const Listing = () => {
                             <FaBath className='text-lg'/>
                             {listing.bathrooms > 1 ? `${listing.bathrooms} baths`: `${listing.bathrooms} bath`}
                         </li>
-                        <li className='flex items-center gap-1 whitespace-nowrap  '>
-                            <FaBath className='text-lg'/>
-                            {listing.bathrooms > 1 ? `${listing.bathrooms} baths`: `${listing.bathrooms} bath`}
-                        </li>
+                        
                         <li className='flex items-center gap-1 whitespace-nowrap  '>
                             <FaParking className='text-lg'/>
                             {listing.parking ? 'Parking spot' : 'No parking'}
@@ -117,7 +116,7 @@ const Listing = () => {
                     )}
                     {contact && <Contact listing = {listing} />}
             </div>  
-
+                    
         </div>
       )}
     </main>
